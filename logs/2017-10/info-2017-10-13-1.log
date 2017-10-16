@@ -1,0 +1,46 @@
+2017-10-13 11:19:04.655 [main] INFO  bzb.Application - hello world
+2017-10-13 11:19:32.360 [http-nio-8080-exec-1] INFO  bzb.controller.WechatController - wechat login
+2017-10-13 11:35:21.599 [main] INFO  bzb.Application - hello world
+2017-10-13 11:37:53.540 [http-nio-8080-exec-1] INFO  bzb.controller.WechatController - wechat login
+2017-10-13 11:39:41.569 [main] INFO  bzb.Application - hello world
+2017-10-13 11:39:47.269 [http-nio-8080-exec-1] INFO  bzb.controller.WechatController - wechat login
+2017-10-13 11:49:06.838 [main] INFO  bzb.Application - hello world
+2017-10-13 11:49:23.885 [http-nio-8080-exec-1] INFO  bzb.controller.WechatController - wechat login
+2017-10-13 11:56:08.444 [main] INFO  bzb.Application - hello world
+2017-10-13 11:58:46.245 [main] INFO  bzb.Application - hello world
+2017-10-13 11:59:04.207 [http-nio-8080-exec-1] INFO  bzb.controller.WechatController - wechat login
+2017-10-13 12:08:33.989 [main] INFO  bzb.Application - hello world
+2017-10-13 12:08:54.645 [http-nio-8080-exec-1] INFO  bzb.controller.WechatController - wechat login
+2017-10-13 13:44:08.468 [main] INFO  bzb.Application - hello world
+2017-10-13 13:44:36.534 [http-nio-8080-exec-2] INFO  bzb.controller.WechatController - wechat login
+2017-10-13 13:56:55.962 [main] INFO  bzb.Application - hello world
+2017-10-13 13:57:10.331 [http-nio-8080-exec-1] INFO  bzb.controller.WechatController - wechat login
+2017-10-13 14:01:52.913 [main] INFO  bzb.Application - hello world
+2017-10-13 14:02:05.539 [http-nio-8080-exec-1] INFO  bzb.controller.WechatController - wechat login
+2017-10-13 14:19:16.108 [main] INFO  bzb.Application - hello world
+2017-10-13 14:19:35.141 [http-nio-8080-exec-1] INFO  bzb.controller.WechatController - wechat login
+2017-10-13 14:30:42.481 [main] INFO  bzb.Application - hello world
+2017-10-13 14:30:59.028 [http-nio-8080-exec-1] INFO  bzb.controller.WechatController - wechat login
+2017-10-13 15:30:54.936 [main] WARN  bzb.Application - bzb.model.SendMessage.createtime()
+java.lang.NoSuchMethodException: bzb.model.SendMessage.createtime()
+	at java.lang.Class.getDeclaredMethod(Class.java:2130) ~[?:1.8.0_40]
+	at bzb.util.CommonUtil.buildInsertSql(CommonUtil.java:98) [classes/:?]
+	at bzb.sign_wechat.AppTest.testApp(AppTest.java:68) [test-classes/:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_40]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_40]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_40]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[?:1.8.0_40]
+	at junit.framework.TestCase.runTest(TestCase.java:154) [junit-3.8.1.jar:?]
+	at junit.framework.TestCase.runBare(TestCase.java:127) [junit-3.8.1.jar:?]
+	at junit.framework.TestResult$1.protect(TestResult.java:106) [junit-3.8.1.jar:?]
+	at junit.framework.TestResult.runProtected(TestResult.java:124) [junit-3.8.1.jar:?]
+	at junit.framework.TestResult.run(TestResult.java:109) [junit-3.8.1.jar:?]
+	at junit.framework.TestCase.run(TestCase.java:118) [junit-3.8.1.jar:?]
+	at org.eclipse.jdt.internal.junit.runner.junit3.JUnit3TestReference.run(JUnit3TestReference.java:131) [.cp/:?]
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38) [.cp/:?]
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459) [.cp/:?]
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675) [.cp/:?]
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382) [.cp/:?]
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192) [.cp/:?]
+2017-10-13 21:16:29.315 [main] INFO  bzb.Application - init database table.......
+2017-10-13 21:17:48.438 [http-nio-8080-exec-1] INFO  bzb.controller.WechatController - wechat login

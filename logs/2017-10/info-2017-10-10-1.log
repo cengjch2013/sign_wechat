@@ -1,0 +1,5 @@
+2017-10-10 15:30:37.334 [main] INFO  bzb.sign_wechat.App - hello world
+2017-10-10 15:36:55.301 [main] INFO  bzb.sign_wechat.App - hello world
+2017-10-10 15:40:37.831 [main] INFO  bzb.sign_wechat.App - hello world
+2017-10-10 15:40:37.836 [main] ERROR bzb.sign_wechat.DBUtil - No suitable driver found for jdbc:sqlite:sign_wechat_db
+2017-10-10 15:43:25.747 [main] INFO  bzb.sign_wechat.App - hello world

@@ -1,0 +1,1 @@
+2017-10-10 15:40:37.836 [main] ERROR bzb.sign_wechat.DBUtil - No suitable driver found for jdbc:sqlite:sign_wechat_db
