@@ -7,8 +7,10 @@ import java.util.Map;
 import org.json.JSONObject;
 
 import bzb.model.SendMessage;
+import bzb.service.IFaceService;
 import bzb.util.CommonUtil;
 import bzb.util.DBUtil;
+import bzb.util.ZkemSDK;
 import cn.zhouyafeng.itchat4j.Wechat;
 import cn.zhouyafeng.itchat4j.face.IMsgHandlerFace;
 import junit.framework.Test;
@@ -77,6 +79,25 @@ public class AppTest
         List<Map<String, Object>> result = DBUtil.executerQuery(sql);
         System.out.println(result);
         
+    }
+    
+    public void testIFaceService(){
+    	ZkemSDK zkem = new ZkemSDK();
+    	boolean result = zkem.connect("192.168.2.104", 4370);
+    	System.out.println(result);
+    	int ReadGeneralLogData=100;
+    	if(result){
+    		zkem.readGeneralLogData(ReadGeneralLogData);
+    		List<Map<String, Object>> list = zkem.getGeneralLogData(ReadGeneralLogData);
+    		for (Map<String, Object> map : list){
+    			System.out.println(map);
+    		}
+    		List<Map<String, Object>> users = zkem.getUserInfo(ReadGeneralLogData);
+    		for (Map<String, Object> map : users){
+    			System.out.println(map);
+    		}
+    	}
+    	
     }
     
 }

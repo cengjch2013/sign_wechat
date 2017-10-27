@@ -2,6 +2,7 @@ package bzb.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,7 @@ import bzb.model.SendMessage;
 import bzb.service.WechatService;
 import bzb.util.CommonUtil;
 import bzb.util.DBUtil;
+import bzb.util.PropertiesUtil;
 import cn.zhouyafeng.itchat4j.api.MessageTools;
 import cn.zhouyafeng.itchat4j.api.WechatTools;
 
@@ -37,27 +39,77 @@ public class WechatController {
 
 	private static Logger logger = LogManager.getLogger(WechatController.class);
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value="/sign", method = RequestMethod.GET)
+	public String index(){
+		
+		return "sign";
+	}
+	/**
+	 * 微信登陆
+	 * @return
+	 */
+	@RequestMapping(value="/login", method = RequestMethod.GET)
 	@ResponseBody
-	public Map<String, Object> login(){
-		Map<String, Object> result = new HashMap<String, Object>();
-		result.put("hello", "hello world");
-		logger.info("wechat login");
+	public String wechatLogin(){
 		wechatService.login();
-		return result;
+		PropertiesUtil.setProperty("wechat_login", "1");
+		return "{\"status\": 200}";
 	}
 	
-	@RequestMapping(value="/index", method = RequestMethod.GET)
-	public String index(){
-		List<JSONObject> friends = WechatTools.getContactList();
-		for (JSONObject fri : friends) {
-//			if (wechatno.equals(fri.get("").toString())){
-//				userId = fri.getString("");
-//				break;
+	@RequestMapping(value="/list", method = RequestMethod.GET)
+	@ResponseBody
+	public String listSignRecord(HttpServletRequest request){
+		String msg = "";
+		int status = 200;
+		org.json.JSONObject result =  new org.json.JSONObject();
+		String begin = request.getParameter("begin");
+		String end = request.getParameter("end");
+		String name = request.getParameter("name");
+		String mode = request.getParameter("mode");
+		String strpage = request.getParameter("page");
+		String strrows = request.getParameter("rows");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		if(begin != null && !begin.isEmpty() && end != null && !end.isEmpty()){
+			try {
+				if (!format.parse(begin).after(format.parse(end))) {
+					status = 400;
+					msg = "终止时间要晚于起始时间";
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		}else {
+			String sql = "select enrollnumber, time, mode from sign_record where 1=1 ";
+			String sql_counter = "select count(*) as counter from sign_record where 1=1";
+			String where = "";
+			if (begin != null && !begin.isEmpty()) {
+				where += " and time >= '" + begin +"'";
+			}
+			if (end != null && !end.isEmpty()) {
+				where += " and time <'" + end + "'";
+			}
+			
+			if (mode != null && !mode.isEmpty()){
+				where += " and mode = " + mode;
+			}
+//			if (name != null && !name.isEmpty()) {
+//				where += " and name like '%" + name + "%'";
 //			}
-			System.out.println(fri);
+			
+			List<Map<String, Object>> counter = DBUtil.executerQuery(sql_counter + where);
+			if (!counter.isEmpty()) {
+				result.put("total", counter.get(0).get("counter"));
+			}
+			
+			where += " limit " + strrows + "  offset " + (Integer.parseInt(strrows) * (Integer.parseInt(strpage)-1));
+			List<Map<String, Object>> list = DBUtil.executerQuery(sql + where);
+			result.put("rows", list);
+			
 		}
-		return "index";
+		result.put("status", status);
+		result.put("msg", msg);
+		return result.toString();
 	}
 	
 	@RequestMapping(value="/sendmsg", method = RequestMethod.POST, consumes="application/json")	
@@ -109,6 +161,16 @@ public class WechatController {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+		return result;
+	}
+	
+	
+	@RequestMapping(value="/export", method = RequestMethod.GET)
+	@ResponseBody
+	public String export(){
+		String result="ok";
+		
+		
 		return result;
 	}
 	

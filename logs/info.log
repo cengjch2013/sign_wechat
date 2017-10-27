@@ -1,9 +1,139 @@
-2017-10-14 13:42:16.575 [main] INFO  bzb.Application - init database table.......
-2017-10-14 13:43:16.964 [main] INFO  bzb.Application - init database table.......
-2017-10-14 13:59:43.975 [main] INFO  bzb.Application - init database table.......
-2017-10-14 14:04:13.417 [main] INFO  bzb.Application - init database table.......
-2017-10-14 19:30:41.310 [main] INFO  bzb.Application - init database table.......
-2017-10-14 20:14:31.044 [main] INFO  bzb.Application - init database table.......
-2017-10-14 20:56:14.814 [main] INFO  bzb.Application - init database table.......
-2017-10-14 21:10:41.720 [main] INFO  bzb.Application - init database table.......
-2017-10-14 21:30:26.162 [main] INFO  bzb.Application - init database table.......
+2017-10-23 21:16:31.702 [main] INFO  bzb.Application - init database table.......
+2017-10-23 21:16:31.739 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  sendmessage (id INTEGER PRIMARY KEY autoincrement,createtime TIMESTAMP default (datetime('now', 'localtime')),messagetype integer(1),sendflag integer(1),wechatno varchar(32),nickname varchar(32),wechatid varchar(128),content varchar(256),error varchar(256))
+2017-10-23 21:16:32.295 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  sys_user (id INTEGER PRIMARY KEY autoincrement,createtime TIMESTAMP default (datetime('now', 'localtime')),username varchar(32),password varchar(64))
+2017-10-23 21:16:32.297 [main] INFO  bzb.util.DBUtil - exec: select * from sys_user where username='admin'
+2017-10-23 21:16:32.318 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  user (id INTEGER PRIMARY KEY autoincrement,createtime TIMESTAMP default (datetime('now', 'localtime')),name varchar(32),enabled INTEGER,enrollnumber INTEGER,wechatno varchar(32),nickname varchar(32),wechatid varchar(128),classname varchar(128),password varchar(64))
+2017-10-23 21:16:32.599 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  sign_record (id INTEGER PRIMARY KEY autoincrement,time TIMESTAMP default (datetime('now', 'localtime')),enrollnumber INTEGER,mode INTEGER,md5 INTEGER,constraint uk_sign_record_unique_md5 unique(md5))
+2017-10-23 21:16:32.601 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  devices (id INTEGER PRIMARY KEY autoincrement,createtime TIMESTAMP default (datetime('now', 'localtime')),name varchar(32),deviceid INTEGER,enabled INTEGER,ip varchar(32),port INTEGER)
+2017-10-23 21:16:32.603 [main] INFO  bzb.Application - init database table successfully
+2017-10-23 21:36:27.052 [http-nio-8080-exec-9] INFO  bzb.util.DBUtil - exec: SELECT DISTINCT  classname as classname FROM user
+2017-10-23 21:36:55.603 [http-nio-8080-exec-10] INFO  bzb.util.DBUtil - exec: SELECT DISTINCT  classname as classname FROM user
+2017-10-23 21:37:28.150 [http-nio-8080-exec-1] INFO  bzb.util.DBUtil - exec: SELECT DISTINCT  classname as classname FROM user
+2017-10-23 21:38:54.564 [http-nio-8080-exec-5] INFO  bzb.util.DBUtil - exec: SELECT DISTINCT  classname as classname FROM user
+2017-10-23 21:40:05.261 [http-nio-8080-exec-2] INFO  bzb.util.DBUtil - exec: SELECT DISTINCT  classname as classname FROM user
+2017-10-23 21:41:08.839 [http-nio-8080-exec-6] INFO  bzb.util.DBUtil - exec: SELECT DISTINCT  classname as classname FROM user
+2017-10-23 21:41:38.074 [http-nio-8080-exec-10] INFO  bzb.util.DBUtil - exec: SELECT DISTINCT  classname as classname FROM user
+2017-10-23 21:41:50.173 [http-nio-8080-exec-1] INFO  bzb.util.DBUtil - exec: SELECT DISTINCT  classname as classname FROM user
+2017-10-23 21:43:41.712 [main] INFO  bzb.Application - init database table.......
+2017-10-23 21:43:41.723 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  sendmessage (id INTEGER PRIMARY KEY autoincrement,createtime TIMESTAMP default (datetime('now', 'localtime')),messagetype integer(1),sendflag integer(1),wechatno varchar(32),nickname varchar(32),wechatid varchar(128),content varchar(256),error varchar(256))
+2017-10-23 21:43:42.059 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  sys_user (id INTEGER PRIMARY KEY autoincrement,createtime TIMESTAMP default (datetime('now', 'localtime')),username varchar(32),password varchar(64))
+2017-10-23 21:43:42.060 [main] INFO  bzb.util.DBUtil - exec: select * from sys_user where username='admin'
+2017-10-23 21:43:42.061 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  user (id INTEGER PRIMARY KEY autoincrement,createtime TIMESTAMP default (datetime('now', 'localtime')),name varchar(32),enabled INTEGER,enrollnumber INTEGER,wechatno varchar(32),nickname varchar(32),wechatid varchar(128),classname varchar(128),password varchar(64))
+2017-10-23 21:43:42.062 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  sign_record (id INTEGER PRIMARY KEY autoincrement,time TIMESTAMP default (datetime('now', 'localtime')),enrollnumber INTEGER,mode INTEGER,md5 INTEGER,constraint uk_sign_record_unique_md5 unique(md5))
+2017-10-23 21:43:42.062 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  devices (id INTEGER PRIMARY KEY autoincrement,createtime TIMESTAMP default (datetime('now', 'localtime')),name varchar(32),deviceid INTEGER,enabled INTEGER,ip varchar(32),port INTEGER)
+2017-10-23 21:43:42.064 [main] INFO  bzb.Application - init database table successfully
+2017-10-23 21:43:53.160 [http-nio-8080-exec-2] INFO  bzb.util.DBUtil - exec: SELECT DISTINCT  classname as classname FROM user
+2017-10-23 21:44:34.555 [http-nio-8080-exec-4] INFO  bzb.util.DBUtil - exec: SELECT DISTINCT  classname as classname FROM user
+2017-10-23 21:45:14.743 [http-nio-8080-exec-6] INFO  bzb.util.DBUtil - exec: SELECT DISTINCT  classname as classname FROM user
+2017-10-23 21:46:51.859 [http-nio-8080-exec-8] INFO  bzb.util.DBUtil - exec: SELECT DISTINCT  classname as classname FROM user
+2017-10-23 21:52:41.115 [http-nio-8080-exec-10] INFO  bzb.util.DBUtil - exec: select count(*) as counter from sign_record where 1=1
+2017-10-23 21:52:41.116 [http-nio-8080-exec-10] INFO  bzb.util.DBUtil - exec: select enrollnumber, time, mode from sign_record where 1=1  limit 10  offset 0
+2017-10-23 21:54:46.103 [main] INFO  bzb.Application - init database table.......
+2017-10-23 21:54:46.112 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  sendmessage (id INTEGER PRIMARY KEY autoincrement,createtime TIMESTAMP default (datetime('now', 'localtime')),messagetype integer(1),sendflag integer(1),wechatno varchar(32),nickname varchar(32),wechatid varchar(128),content varchar(256),error varchar(256))
+2017-10-23 21:54:46.425 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  sys_user (id INTEGER PRIMARY KEY autoincrement,createtime TIMESTAMP default (datetime('now', 'localtime')),username varchar(32),password varchar(64))
+2017-10-23 21:54:46.426 [main] INFO  bzb.util.DBUtil - exec: select * from sys_user where username='admin'
+2017-10-23 21:54:46.427 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  user (id INTEGER PRIMARY KEY autoincrement,createtime TIMESTAMP default (datetime('now', 'localtime')),name varchar(32),enabled INTEGER,enrollnumber INTEGER,wechatno varchar(32),nickname varchar(32),wechatid varchar(128),classname varchar(128),password varchar(64))
+2017-10-23 21:54:46.429 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  sign_record (id INTEGER PRIMARY KEY autoincrement,time TIMESTAMP default (datetime('now', 'localtime')),enrollnumber INTEGER,mode INTEGER,md5 INTEGER,constraint uk_sign_record_unique_md5 unique(md5))
+2017-10-23 21:54:46.430 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  devices (id INTEGER PRIMARY KEY autoincrement,createtime TIMESTAMP default (datetime('now', 'localtime')),name varchar(32),deviceid INTEGER,enabled INTEGER,ip varchar(32),port INTEGER)
+2017-10-23 21:54:46.431 [main] INFO  bzb.Application - init database table successfully
+2017-10-23 21:56:00.238 [main] INFO  bzb.Application - init database table.......
+2017-10-23 21:56:00.249 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  sendmessage (id INTEGER PRIMARY KEY autoincrement,createtime TIMESTAMP default (datetime('now', 'localtime')),messagetype integer(1),sendflag integer(1),wechatno varchar(32),nickname varchar(32),wechatid varchar(128),content varchar(256),error varchar(256))
+2017-10-23 21:56:00.586 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  sys_user (id INTEGER PRIMARY KEY autoincrement,createtime TIMESTAMP default (datetime('now', 'localtime')),username varchar(32),password varchar(64))
+2017-10-23 21:56:00.587 [main] INFO  bzb.util.DBUtil - exec: select * from sys_user where username='admin'
+2017-10-23 21:56:00.589 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  user (id INTEGER PRIMARY KEY autoincrement,createtime TIMESTAMP default (datetime('now', 'localtime')),name varchar(32),enabled INTEGER,enrollnumber INTEGER,wechatno varchar(32),nickname varchar(32),wechatid varchar(128),classname varchar(128),password varchar(64))
+2017-10-23 21:56:00.590 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  sign_record (id INTEGER PRIMARY KEY autoincrement,time TIMESTAMP default (datetime('now', 'localtime')),enrollnumber INTEGER,mode INTEGER,md5 INTEGER,constraint uk_sign_record_unique_md5 unique(md5))
+2017-10-23 21:56:00.591 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  devices (id INTEGER PRIMARY KEY autoincrement,createtime TIMESTAMP default (datetime('now', 'localtime')),name varchar(32),deviceid INTEGER,enabled INTEGER,ip varchar(32),port INTEGER)
+2017-10-23 21:56:00.592 [main] INFO  bzb.Application - init database table successfully
+2017-10-23 21:56:42.448 [main] INFO  bzb.Application - init database table.......
+2017-10-23 21:56:42.457 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  sendmessage (id INTEGER PRIMARY KEY autoincrement,createtime TIMESTAMP default (datetime('now', 'localtime')),messagetype integer(1),sendflag integer(1),wechatno varchar(32),nickname varchar(32),wechatid varchar(128),content varchar(256),error varchar(256))
+2017-10-23 21:56:42.763 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  sys_user (id INTEGER PRIMARY KEY autoincrement,createtime TIMESTAMP default (datetime('now', 'localtime')),username varchar(32),password varchar(64))
+2017-10-23 21:56:42.764 [main] INFO  bzb.util.DBUtil - exec: select * from sys_user where username='admin'
+2017-10-23 21:56:42.765 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  user (id INTEGER PRIMARY KEY autoincrement,createtime TIMESTAMP default (datetime('now', 'localtime')),name varchar(32),enabled INTEGER,enrollnumber INTEGER,wechatno varchar(32),nickname varchar(32),wechatid varchar(128),classname varchar(128),password varchar(64))
+2017-10-23 21:56:42.767 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  sign_record (id INTEGER PRIMARY KEY autoincrement,time TIMESTAMP default (datetime('now', 'localtime')),enrollnumber INTEGER,mode INTEGER,md5 INTEGER,constraint uk_sign_record_unique_md5 unique(md5))
+2017-10-23 21:56:42.768 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  devices (id INTEGER PRIMARY KEY autoincrement,createtime TIMESTAMP default (datetime('now', 'localtime')),name varchar(32),deviceid INTEGER,enabled INTEGER,ip varchar(32),port INTEGER)
+2017-10-23 21:56:42.769 [main] INFO  bzb.Application - init database table successfully
+2017-10-23 22:02:35.024 [main] INFO  bzb.Application - init database table.......
+2017-10-23 22:02:35.033 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  sendmessage (id INTEGER PRIMARY KEY autoincrement,createtime TIMESTAMP default (datetime('now', 'localtime')),messagetype integer(1),sendflag integer(1),wechatno varchar(32),nickname varchar(32),wechatid varchar(128),content varchar(256),error varchar(256))
+2017-10-23 22:02:35.341 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  sys_user (id INTEGER PRIMARY KEY autoincrement,createtime TIMESTAMP default (datetime('now', 'localtime')),username varchar(32),password varchar(64))
+2017-10-23 22:02:35.342 [main] INFO  bzb.util.DBUtil - exec: select * from sys_user where username='admin'
+2017-10-23 22:02:35.343 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  user (id INTEGER PRIMARY KEY autoincrement,createtime TIMESTAMP default (datetime('now', 'localtime')),name varchar(32),enabled INTEGER,enrollnumber INTEGER,wechatno varchar(32),nickname varchar(32),wechatid varchar(128),classname varchar(128),password varchar(64))
+2017-10-23 22:02:35.345 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  sign_record (id INTEGER PRIMARY KEY autoincrement,time TIMESTAMP default (datetime('now', 'localtime')),enrollnumber INTEGER,mode INTEGER,md5 INTEGER,constraint uk_sign_record_unique_md5 unique(md5))
+2017-10-23 22:02:35.346 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  devices (id INTEGER PRIMARY KEY autoincrement,createtime TIMESTAMP default (datetime('now', 'localtime')),name varchar(32),deviceid INTEGER,enabled INTEGER,ip varchar(32),port INTEGER)
+2017-10-23 22:02:35.347 [main] INFO  bzb.Application - init database table successfully
+2017-10-23 22:02:49.123 [main] INFO  bzb.Application - init database table.......
+2017-10-23 22:02:49.133 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  sendmessage (id INTEGER PRIMARY KEY autoincrement,createtime TIMESTAMP default (datetime('now', 'localtime')),messagetype integer(1),sendflag integer(1),wechatno varchar(32),nickname varchar(32),wechatid varchar(128),content varchar(256),error varchar(256))
+2017-10-23 22:02:49.437 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  sys_user (id INTEGER PRIMARY KEY autoincrement,createtime TIMESTAMP default (datetime('now', 'localtime')),username varchar(32),password varchar(64))
+2017-10-23 22:02:49.439 [main] INFO  bzb.util.DBUtil - exec: select * from sys_user where username='admin'
+2017-10-23 22:02:49.441 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  user (id INTEGER PRIMARY KEY autoincrement,createtime TIMESTAMP default (datetime('now', 'localtime')),name varchar(32),enabled INTEGER,enrollnumber INTEGER,wechatno varchar(32),nickname varchar(32),wechatid varchar(128),classname varchar(128),password varchar(64))
+2017-10-23 22:02:49.442 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  sign_record (id INTEGER PRIMARY KEY autoincrement,time TIMESTAMP default (datetime('now', 'localtime')),enrollnumber INTEGER,mode INTEGER,md5 INTEGER,constraint uk_sign_record_unique_md5 unique(md5))
+2017-10-23 22:02:49.443 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  devices (id INTEGER PRIMARY KEY autoincrement,createtime TIMESTAMP default (datetime('now', 'localtime')),name varchar(32),deviceid INTEGER,enabled INTEGER,ip varchar(32),port INTEGER)
+2017-10-23 22:02:49.443 [main] INFO  bzb.Application - init database table successfully
+2017-10-23 22:03:41.162 [http-nio-8080-exec-4] INFO  bzb.util.DBUtil - exec: SELECT DISTINCT  classname as classname FROM user
+2017-10-23 22:03:43.231 [http-nio-8080-exec-6] INFO  bzb.util.DBUtil - exec: select count(*) as counter from sign_record where 1=1
+2017-10-23 22:03:43.232 [http-nio-8080-exec-6] INFO  bzb.util.DBUtil - exec: select enrollnumber, time, mode from sign_record where 1=1  limit 10  offset 0
+2017-10-23 22:21:06.447 [http-nio-8080-exec-7] INFO  bzb.util.DBUtil - exec: select count(*) as counter from sign_record where 1=1
+2017-10-23 22:21:06.449 [http-nio-8080-exec-7] INFO  bzb.util.DBUtil - exec: select enrollnumber, time, mode from sign_record where 1=1  limit 10  offset 0
+2017-10-23 22:21:21.039 [http-nio-8080-exec-8] INFO  bzb.util.DBUtil - exec: select count(*) as counter from sign_record where 1=1
+2017-10-23 22:21:21.041 [http-nio-8080-exec-8] INFO  bzb.util.DBUtil - exec: select enrollnumber, time, mode from sign_record where 1=1  limit 10  offset 0
+2017-10-23 22:21:45.926 [http-nio-8080-exec-2] INFO  bzb.util.DBUtil - exec: select count(*) as counter from sign_record where 1=1
+2017-10-23 22:21:45.928 [http-nio-8080-exec-2] INFO  bzb.util.DBUtil - exec: select enrollnumber, time, mode from sign_record where 1=1  limit 10  offset 0
+2017-10-23 22:21:47.453 [http-nio-8080-exec-1] INFO  bzb.util.DBUtil - exec: select count(*) as counter from sign_record where 1=1
+2017-10-23 22:21:47.454 [http-nio-8080-exec-1] INFO  bzb.util.DBUtil - exec: select enrollnumber, time, mode from sign_record where 1=1  limit 10  offset 0
+2017-10-23 22:25:20.599 [http-nio-8080-exec-8] INFO  bzb.util.DBUtil - exec: select count(*) as counter from sign_record where 1=1 and time >= '2017/10/16 22:25:16'
+2017-10-23 22:25:20.601 [http-nio-8080-exec-8] INFO  bzb.util.DBUtil - exec: select enrollnumber, time, mode from sign_record where 1=1  and time >= '2017/10/16 22:25:16' limit 10  offset 0
+2017-10-23 22:27:18.023 [main] INFO  bzb.Application - init database table.......
+2017-10-23 22:27:18.032 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  sendmessage (id INTEGER PRIMARY KEY autoincrement,createtime TIMESTAMP default (datetime('now', 'localtime')),messagetype integer(1),sendflag integer(1),wechatno varchar(32),nickname varchar(32),wechatid varchar(128),content varchar(256),error varchar(256))
+2017-10-23 22:27:18.356 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  sys_user (id INTEGER PRIMARY KEY autoincrement,createtime TIMESTAMP default (datetime('now', 'localtime')),username varchar(32),password varchar(64))
+2017-10-23 22:27:18.356 [main] INFO  bzb.util.DBUtil - exec: select * from sys_user where username='admin'
+2017-10-23 22:27:18.358 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  user (id INTEGER PRIMARY KEY autoincrement,createtime TIMESTAMP default (datetime('now', 'localtime')),name varchar(32),enabled INTEGER,enrollnumber INTEGER,wechatno varchar(32),nickname varchar(32),wechatid varchar(128),classname varchar(128),password varchar(64))
+2017-10-23 22:27:18.358 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  sign_record (id INTEGER PRIMARY KEY autoincrement,time TIMESTAMP default (datetime('now', 'localtime')),enrollnumber INTEGER,mode INTEGER,md5 INTEGER,constraint uk_sign_record_unique_md5 unique(md5))
+2017-10-23 22:27:18.359 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  devices (id INTEGER PRIMARY KEY autoincrement,createtime TIMESTAMP default (datetime('now', 'localtime')),name varchar(32),deviceid INTEGER,enabled INTEGER,ip varchar(32),port INTEGER)
+2017-10-23 22:27:18.360 [main] INFO  bzb.Application - init database table successfully
+2017-10-23 22:27:34.110 [http-nio-8080-exec-2] INFO  bzb.util.DBUtil - exec: select count(*) as counter from sign_record where 1=1 and time >= '2017-10-16 22:27:29'
+2017-10-23 22:27:34.112 [http-nio-8080-exec-2] INFO  bzb.util.DBUtil - exec: select enrollnumber, time, mode from sign_record where 1=1  and time >= '2017-10-16 22:27:29' limit 10  offset 0
+2017-10-23 22:28:42.968 [http-nio-8080-exec-8] INFO  bzb.util.DBUtil - exec: select count(*) as counter from sign_record where 1=1 and time >= '2017-10-16 22:28:38'
+2017-10-23 22:28:42.971 [http-nio-8080-exec-8] INFO  bzb.util.DBUtil - exec: select enrollnumber, time, mode from sign_record where 1=1  and time >= '2017-10-16 22:28:38' limit 10  offset 0
+2017-10-23 22:29:44.855 [main] INFO  bzb.Application - init database table.......
+2017-10-23 22:29:44.867 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  sendmessage (id INTEGER PRIMARY KEY autoincrement,createtime TIMESTAMP default (datetime('now', 'localtime')),messagetype integer(1),sendflag integer(1),wechatno varchar(32),nickname varchar(32),wechatid varchar(128),content varchar(256),error varchar(256))
+2017-10-23 22:29:45.171 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  sys_user (id INTEGER PRIMARY KEY autoincrement,createtime TIMESTAMP default (datetime('now', 'localtime')),username varchar(32),password varchar(64))
+2017-10-23 22:29:45.172 [main] INFO  bzb.util.DBUtil - exec: select * from sys_user where username='admin'
+2017-10-23 22:29:45.175 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  user (id INTEGER PRIMARY KEY autoincrement,createtime TIMESTAMP default (datetime('now', 'localtime')),name varchar(32),enabled INTEGER,enrollnumber INTEGER,wechatno varchar(32),nickname varchar(32),wechatid varchar(128),classname varchar(128),password varchar(64))
+2017-10-23 22:29:45.176 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  sign_record (id INTEGER PRIMARY KEY autoincrement,time TIMESTAMP default (datetime('now', 'localtime')),enrollnumber INTEGER,mode INTEGER,md5 INTEGER,constraint uk_sign_record_unique_md5 unique(md5))
+2017-10-23 22:29:45.177 [main] INFO  bzb.util.DBUtil - exec: create table IF NOT EXISTS  devices (id INTEGER PRIMARY KEY autoincrement,createtime TIMESTAMP default (datetime('now', 'localtime')),name varchar(32),deviceid INTEGER,enabled INTEGER,ip varchar(32),port INTEGER)
+2017-10-23 22:29:45.178 [main] INFO  bzb.Application - init database table successfully
+2017-10-23 22:31:44.857 [http-nio-8080-exec-2] INFO  bzb.util.DBUtil - exec: select count(*) as counter from sign_record where 1=1 and time >= '2017-10-16 22:30:41'
+2017-10-23 22:31:44.859 [http-nio-8080-exec-2] INFO  bzb.util.DBUtil - exec: select enrollnumber, time, mode from sign_record where 1=1  and time >= '2017-10-16 22:30:41' limit 10  offset 0
+2017-10-23 22:31:50.144 [http-nio-8080-exec-3] INFO  bzb.util.DBUtil - exec: select count(*) as counter from sign_record where 1=1 and time >= '2017-10-16 22:30:41'
+2017-10-23 22:31:50.146 [http-nio-8080-exec-3] INFO  bzb.util.DBUtil - exec: select enrollnumber, time, mode from sign_record where 1=1  and time >= '2017-10-16 22:30:41' limit 10  offset 0
+2017-10-23 22:33:13.247 [http-nio-8080-exec-1] INFO  bzb.util.DBUtil - exec: select count(*) as counter from sign_record where 1=1 and time <'2017-10-23 22:33:09'
+2017-10-23 22:33:13.249 [http-nio-8080-exec-1] INFO  bzb.util.DBUtil - exec: select enrollnumber, time, mode from sign_record where 1=1  and time <'2017-10-23 22:33:09' limit 10  offset 0
+2017-10-23 22:46:40.422 [http-nio-8080-exec-6] INFO  bzb.util.DBUtil - exec: select count(*) as counter from sign_record where 1=1
+2017-10-23 22:46:40.425 [http-nio-8080-exec-6] INFO  bzb.util.DBUtil - exec: select enrollnumber, time, mode from sign_record where 1=1  limit 10  offset 0
+2017-10-23 22:47:02.260 [http-nio-8080-exec-10] INFO  bzb.util.DBUtil - exec: select count(*) as counter from sign_record where 1=1
+2017-10-23 22:47:02.262 [http-nio-8080-exec-10] INFO  bzb.util.DBUtil - exec: select enrollnumber, time, mode from sign_record where 1=1  limit 10  offset 0
+2017-10-23 22:47:20.396 [http-nio-8080-exec-5] INFO  bzb.util.DBUtil - exec: select count(*) as counter from sign_record where 1=1
+2017-10-23 22:47:20.398 [http-nio-8080-exec-5] INFO  bzb.util.DBUtil - exec: select enrollnumber, time, mode from sign_record where 1=1  limit 10  offset 0
+2017-10-23 22:47:24.289 [http-nio-8080-exec-3] INFO  bzb.util.DBUtil - exec: select count(*) as counter from sign_record where 1=1
+2017-10-23 22:47:24.290 [http-nio-8080-exec-3] INFO  bzb.util.DBUtil - exec: select enrollnumber, time, mode from sign_record where 1=1  limit 10  offset 0
+2017-10-23 22:47:26.037 [http-nio-8080-exec-8] INFO  bzb.util.DBUtil - exec: select count(*) as counter from sign_record where 1=1
+2017-10-23 22:47:26.039 [http-nio-8080-exec-8] INFO  bzb.util.DBUtil - exec: select enrollnumber, time, mode from sign_record where 1=1  limit 10  offset 0
+2017-10-23 22:47:32.738 [http-nio-8080-exec-9] INFO  bzb.util.DBUtil - exec: select count(*) as counter from sign_record where 1=1
+2017-10-23 22:47:32.739 [http-nio-8080-exec-9] INFO  bzb.util.DBUtil - exec: select enrollnumber, time, mode from sign_record where 1=1  limit 10  offset 0
+2017-10-23 22:48:28.035 [http-nio-8080-exec-4] INFO  bzb.util.DBUtil - exec: select count(*) as counter from sign_record where 1=1
+2017-10-23 22:48:28.036 [http-nio-8080-exec-4] INFO  bzb.util.DBUtil - exec: select enrollnumber, time, mode from sign_record where 1=1  limit 10  offset 0
+2017-10-23 22:50:01.093 [http-nio-8080-exec-7] INFO  bzb.util.DBUtil - exec: select count(*) as counter from sign_record where 1=1
+2017-10-23 22:50:01.095 [http-nio-8080-exec-7] INFO  bzb.util.DBUtil - exec: select enrollnumber, time, mode from sign_record where 1=1  limit 10  offset 0
+2017-10-23 22:53:06.469 [http-nio-8080-exec-7] INFO  bzb.util.DBUtil - exec: select count(*) as counter from sign_record where 1=1
+2017-10-23 22:53:06.471 [http-nio-8080-exec-7] INFO  bzb.util.DBUtil - exec: select enrollnumber, time, mode from sign_record where 1=1  limit 10  offset 0
+2017-10-23 22:53:17.385 [http-nio-8080-exec-2] INFO  bzb.util.DBUtil - exec: select count(*) as counter from sign_record where 1=1
+2017-10-23 22:53:17.386 [http-nio-8080-exec-2] INFO  bzb.util.DBUtil - exec: select enrollnumber, time, mode from sign_record where 1=1  limit 10  offset 0
+2017-10-23 22:54:50.671 [http-nio-8080-exec-1] INFO  bzb.util.DBUtil - exec: select count(*) as counter from sign_record where 1=1
+2017-10-23 22:54:50.673 [http-nio-8080-exec-1] INFO  bzb.util.DBUtil - exec: select enrollnumber, time, mode from sign_record where 1=1  limit 10  offset 0
+2017-10-23 22:56:10.524 [http-nio-8080-exec-10] INFO  bzb.util.DBUtil - exec: select count(*) as counter from sign_record where 1=1
+2017-10-23 22:56:10.526 [http-nio-8080-exec-10] INFO  bzb.util.DBUtil - exec: select enrollnumber, time, mode from sign_record where 1=1  limit 10  offset 0
+2017-10-23 22:56:53.342 [http-nio-8080-exec-3] INFO  bzb.util.DBUtil - exec: select count(*) as counter from sign_record where 1=1
+2017-10-23 22:56:53.343 [http-nio-8080-exec-3] INFO  bzb.util.DBUtil - exec: select enrollnumber, time, mode from sign_record where 1=1  limit 10  offset 0
+2017-10-23 22:57:54.261 [http-nio-8080-exec-4] INFO  bzb.util.DBUtil - exec: select count(*) as counter from sign_record where 1=1 and time >= '2017-10-16 22:57:29'
+2017-10-23 22:57:54.263 [http-nio-8080-exec-4] INFO  bzb.util.DBUtil - exec: select enrollnumber, time, mode from sign_record where 1=1  and time >= '2017-10-16 22:57:29' limit 10  offset 0
+2017-10-23 22:58:13.739 [http-nio-8080-exec-7] INFO  bzb.util.DBUtil - exec: select count(*) as counter from sign_record where 1=1 and time <'2017-10-18 22:58:00'
+2017-10-23 22:58:13.740 [http-nio-8080-exec-7] INFO  bzb.util.DBUtil - exec: select enrollnumber, time, mode from sign_record where 1=1  and time <'2017-10-18 22:58:00' limit 10  offset 0
