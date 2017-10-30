@@ -10,6 +10,7 @@ import bzb.model.SendMessage;
 import bzb.service.IFaceService;
 import bzb.util.CommonUtil;
 import bzb.util.DBUtil;
+import bzb.util.PropertiesUtil;
 import bzb.util.ZkemSDK;
 import cn.zhouyafeng.itchat4j.Wechat;
 import cn.zhouyafeng.itchat4j.face.IMsgHandlerFace;
@@ -98,6 +99,10 @@ public class AppTest
     		}
     	}
     	
+    }
+    
+    public void testProperties(){
+    	PropertiesUtil.saveProperty("test", "test");
     }
     
 }

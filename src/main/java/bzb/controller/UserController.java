@@ -1,6 +1,7 @@
 package bzb.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
 
+import bzb.model.User;
 import bzb.util.Cache;
+import bzb.util.CommonUtil;
 import bzb.util.DBUtil;
 import bzb.util.ZkemSDK;
 
@@ -27,6 +30,13 @@ public class UserController {
 	public String index() {
 		return "users";
 	}
+	
+	@RequestMapping(value = "/addform", method = RequestMethod.GET)
+	public String form(HttpServletRequest request) {
+		
+		
+		return "addform";
+	}
 
 	@RequestMapping(value = "/classes", method = RequestMethod.GET)
 	@ResponseBody
@@ -34,19 +44,19 @@ public class UserController {
 		JSONObject result = new JSONObject();
 		int status = 200;
 		String msg = "";
+		List<String> classnames = new ArrayList<String>();
 		try {
 			if (!Cache.classes.isEmpty()) {// 从缓存中读取班级列表
-				result.put("classnames", Cache.classes);
+				classnames = Cache.classes;
 			} else {
 				String sql = "SELECT DISTINCT  classname as classname FROM user";
-				List<String> classnames = new ArrayList<String>();
+				
 				List<Map<String, Object>> list = DBUtil.executerQuery(sql);
-				if (list.isEmpty()) {
+				if (!list.isEmpty()) {
 					for (Map<String, Object> map : list) {
 						classnames.add(map.get("classname").toString());
 					}
-					Cache.classes.addAll(classnames);
-					result.put("classnames", classnames);
+					Cache.classes.addAll(classnames);					
 				}
 			}
 
@@ -55,6 +65,7 @@ public class UserController {
 			msg = e.getMessage();
 			status = 400;
 		}
+		result.put("classnames", classnames);
 		result.put("status", status);
 		result.put("msg", msg);
 
@@ -63,18 +74,43 @@ public class UserController {
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	@ResponseBody
-	public String add() {
+	public String add(HttpServletRequest request) {
 		JSONObject result = new JSONObject();
-		
-		//加入数据库
-		
-		
-		//加入到打卡机
-		
-		//zkem.setUserInfo(dwMachineNumber, number, name, password, isPrivilege, enabled) ;
-		
-		//加入到Cache
+		String msg = "";
+		int status = 200;
+		String name = request.getParameter("name");
+		String nickname = request.getParameter("nickname");
+		String classname = request.getParameter("classname");
+		String wechatno = request.getParameter("wechatno");
+		try {
+			User user = new User();
+			user.setClassname(classname);
+			user.setName(name);
+			user.setNickname(nickname);
+			user.setWechatno(wechatno);
+			user.setEnabled(true);
+			user.setCreatetime(new Date());
+			//加入数据库
+			String sql = CommonUtil.buildInsertSql(user);
+			DBUtil.executer(sql);
+			
+			if (!Cache.classes.contains(classname.trim())){
+				Cache.classes.add(classname);
+			}
+			
+			//加入到打卡机
+			
+			//zkem.setUserInfo(dwMachineNumber, number, name, password, isPrivilege, enabled) ;
+			
+			//加入到Cache
+		} catch (Exception e) {
+			// TODO: handle exception
+			status = 400;
+			msg = e.getMessage();
+		}
 
+		result.put("status", status);
+		result.put("msg", msg);
 		return result.toJSONString();
 	}
 
@@ -123,10 +159,23 @@ public class UserController {
 
 		try {
 			//只查询未删除的
-			String sql = "select * from user where enable =1 ";
-			String sql_counter = "select count(*) as counter from user where enable =1 ";
+			String sql = "select * from user where enabled =1 ";
+			String sql_counter = "select count(*) as counter from user where enabled =1 ";
 			int page = 1;
 			int size = 10;
+			
+			String where = "";
+			if(name != null && !name.equals("")){
+				where += " and name like '%" + name + "%'";
+			}
+			
+			if(classname != null && !classname.equals("")){
+				where += " and classname = '"+ classname + "'";
+			}
+			
+			if (nickname != null && !nickname.equals("")){
+				where += " and nickname = '" + nickname + "' ";
+			}
 
 			if (!(strpage == null || !strpage.isEmpty() || Integer.parseInt(strpage) < 1)) {
 				page = Integer.parseInt(strpage);
@@ -135,7 +184,7 @@ public class UserController {
 				size = Integer.parseInt(strrows);
 			}
 
-			String where = "";
+			
 
 			// 获取总数
 			List<Map<String, Object>> counter = DBUtil.executerQuery(sql_counter + where);
@@ -157,5 +206,7 @@ public class UserController {
 		result.put("msg", msg);
 		return result.toString();
 	}
+	
+	
 
 }

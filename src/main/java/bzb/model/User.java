@@ -40,7 +40,7 @@ public class User {
 		this.name = name;
 	}
 
-	public boolean isEnabled() {
+	public boolean getEnabled() {
 		return enabled;
 	}
 

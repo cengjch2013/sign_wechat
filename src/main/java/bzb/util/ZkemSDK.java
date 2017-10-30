@@ -137,8 +137,6 @@ public class ZkemSDK {
 			// 由于名字后面会产生乱码，所以这里采用了截取字符串的办法把后面的乱码去掉了，以后有待考察更好的办法。
 			// 只支持2位、3位、4位长度的中文名字。
 			String name = "";
-			System.out.println(sName);
-			System.out.println(sName.getStringRef().getBytes().length);
 			if (sName.getStringRef().getBytes().length == 9 || sName.getStringRef().getBytes().length == 8) {
 				name = sName.getStringRef().substring(0, 3);
 			} else if (sName.getStringRef().getBytes().length == 7 || sName.getStringRef().getBytes().length == 6) {

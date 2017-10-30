@@ -38,22 +38,13 @@
 				"menuname" : "签到查询",
 				"icon" : "con-search",
 				"url" : "/wechat/sign"
-			}/* , {
+			},
+			{
 				"menuid" : "14",
-				"menuname" : "角色管理",
-				"icon" : "icon-role",
-				"url" : "demo2.html"
-			}, {
-				"menuid" : "15",
-				"menuname" : "权限设置",
-				"icon" : "icon-set",
-				"url" : "demo.html"
-			}, {
-				"menuid" : "16",
-				"menuname" : "系统日志",
-				"icon" : "icon-log",
-				"url" : "demo1.html"
-			}  */]
+				"menuname" : "配置管理",
+				"icon" : "icon-tip",
+				"url" : "/config/home"
+			}]
 		}]
 	};
 	//设置登录窗口

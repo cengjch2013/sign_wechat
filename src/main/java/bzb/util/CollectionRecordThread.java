@@ -24,7 +24,7 @@ public class CollectionRecordThread implements Runnable {
 				boolean result = zkem.connect(PropertiesUtil.getProperty("ip"),
 						Integer.parseInt(PropertiesUtil.getProperty("port")));
 				System.out.println(result);
-				int ReadGeneralLogData = 100;
+				int dwMachineNumber = 100;
 				if (result) {
 					// 查询打卡用户
 					Map<Integer, Map<String, Object>> user_map = new HashMap<Integer, Map<String, Object>>();
@@ -39,30 +39,39 @@ public class CollectionRecordThread implements Runnable {
 					}
 
 					Date today = new Date();
-					zkem.readGeneralLogData(ReadGeneralLogData);
-					List<Map<String, Object>> list = zkem.getGeneralLogData(ReadGeneralLogData);
+					zkem.readGeneralLogData(dwMachineNumber);
+					List<Map<String, Object>> list = zkem.getGeneralLogData(dwMachineNumber);
+					
+					List<Map<String, Object>> record_users = zkem.getUserInfo(dwMachineNumber);
+					
+					Map<Integer, String> map_users = new HashMap<Integer, String>();
+					if (!record_users.isEmpty()) {
+						for (Map<String, Object> user : record_users){
+							map_users.put(Integer.parseInt("" + user.get("EnrollNumber")), user.get("Name").toString().trim());
+						}
+					}
 
 					String check_sql = "select mode from sign_record where 1=1 and time > '" + format.format(today)
 							+ "' ";
 					String check_sql_where = "";
-					String sql = "insert into sign_record(enrollnumber, mode, time,md5 ) select ";
+					String sql = "insert into sign_record(enrollnumber, name, mode, time, md5 ) select ";
 
 					String strValues = "";					
 					for (Map<String, Object> map : list) {
 						int mode = 0;// 默认签到
 						// 查询最后一次记录
-						check_sql_where = " and enrollnumber = " + map.get("EnrollNumber") + " ORDER BY time DESC";
+						int EnrollNumber = Integer.parseInt("" + map.get("EnrollNumber"));
+						check_sql_where = " and enrollnumber = " + EnrollNumber + " ORDER BY time DESC";
 						List<Map<String, Object>> check_list = DBUtil.executerQuery(check_sql + check_sql_where);
 						if (!check_list.isEmpty()) {
-							// 当天最后一次打卡，如果是签到，则本次是签退，否则是签到
-							System.out.println(check_list.get(0).get("mode").toString());
+							// 当天最后一次打卡，如果是签到，则本次是签退，否则是签到							
 							mode = Integer.parseInt(check_list.get(0).get("mode").toString()) == 0 ? 1 : 0;
 						}
 
 						// 添加MD5，防止重复记录插入
 						int md5 = ("" + map.get("EnrollNumber") + map.get("Time")).hashCode();
 
-						strValues = "" + map.get("EnrollNumber") + "," + mode + ",'" + map.get("Time") + "'," + md5
+						strValues = "" + map.get("EnrollNumber") + ",'" + map_users.get(EnrollNumber) + "'," + mode+  ",'" + map.get("Time") + "'," + md5
 								+ " WHERE NOT EXISTS (SELECT md5 FROM sign_record where md5 =" + md5 + ")";
 						DBUtil.executer(sql + strValues);
 
@@ -118,9 +127,10 @@ public class CollectionRecordThread implements Runnable {
 							DBUtil.executer(insertsql);
 						} catch (Exception e) {
 							// TODO: handle exception
+							e.printStackTrace();
 						}
 					}
-					zkem.clearGLog(ReadGeneralLogData);
+					zkem.clearGLog(dwMachineNumber);
 
 				}
 				zkem.disConnect();

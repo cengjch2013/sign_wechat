@@ -51,8 +51,8 @@
            });
 	}
 	function doSearch() {
-		alert($("input[name='end']").val());
-		alert($("input[name='begin']").val());
+		/* alert($("input[name='end']").val());
+		alert($("input[name='begin']").val()); */
 		
 		var opts = $("#tt").datagrid("options");
 	    opts.url = "/wechat/list";
@@ -133,7 +133,7 @@
 						iconCls="icon-save" rownumbers="true" pagination="true">
 						<thead>
 							<tr>
-								<th field="enrollnumber" width="80">学生姓名</th>
+								<th field="name" width="80">学生姓名</th>
 								<th field="mode" width="150" data-options="formatter:formatMode">打卡状态</th>
 								<th field="time" width="80" align="right" sortable="true">打卡时间</th>
 								<!-- <th field="unitcost" width="80" align="right"

@@ -80,7 +80,7 @@ public class WechatController {
 				e.printStackTrace();
 			}
 		}else {
-			String sql = "select enrollnumber, time, mode from sign_record where 1=1 ";
+			String sql = "select name, time, mode from sign_record where 1=1 ";
 			String sql_counter = "select count(*) as counter from sign_record where 1=1";
 			String where = "";
 			if (begin != null && !begin.isEmpty()) {
@@ -93,16 +93,17 @@ public class WechatController {
 			if (mode != null && !mode.isEmpty()){
 				where += " and mode = " + mode;
 			}
-//			if (name != null && !name.isEmpty()) {
-//				where += " and name like '%" + name + "%'";
-//			}
+			if (name != null && !name.isEmpty()) {
+				where += " and name like '%" + name + "%'";
+			}
 			
 			List<Map<String, Object>> counter = DBUtil.executerQuery(sql_counter + where);
 			if (!counter.isEmpty()) {
 				result.put("total", counter.get(0).get("counter"));
 			}
-			
+			where += " ORDER BY time DESC ";
 			where += " limit " + strrows + "  offset " + (Integer.parseInt(strrows) * (Integer.parseInt(strpage)-1));
+			
 			List<Map<String, Object>> list = DBUtil.executerQuery(sql + where);
 			result.put("rows", list);
 			

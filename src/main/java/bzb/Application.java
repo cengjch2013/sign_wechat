@@ -66,7 +66,8 @@ public class Application{
         sql = "create table IF NOT EXISTS  sign_record ("
         		+ "id INTEGER PRIMARY KEY autoincrement,"
         		+ "time TIMESTAMP default (datetime('now', 'localtime')),"        		
-        		+ "enrollnumber INTEGER,"        		
+        		+ "enrollnumber INTEGER," 
+        		+ "name varchar(32),"
         		+ "mode INTEGER,"
         		+ "md5 INTEGER,"
         		+ "constraint uk_sign_record_unique_md5 unique(md5))";

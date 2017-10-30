@@ -40,9 +40,11 @@
 				result = data; 
 				if (result.status == 200){
 					list_names = result.classnames;
-					$.each(list_names,function(index,value){
-						classnames.push({"text": value, "id": value});
-					});
+					if(list_names.length > 0){
+						$.each(list_names,function(index,value){
+							classnames.push({"text": value, "id": value});
+						});
+					}					
 				}
 				$("#classname").combobox("loadData", classnames);
 			},
@@ -51,6 +53,9 @@
 	        }
 			
 		   });
+		   
+		   //加载数据
+		   doSearch();
 		})
 
 	//表格宽度自适应，这里的#dg是datagrid表格生成的div标签
@@ -66,7 +71,7 @@
 	          
 	        }
 	    });
-	    $('#tt').datagrid('getPager').pagination({//分页栏下方文字显示
+	    $('#dg').datagrid('getPager').pagination({//分页栏下方文字显示
 	    	beforePageText: '第',//页数文本框前显示的汉字  
 	    	afterPageText: '页    共 {pages} 页', 
             displayMsg:'当前显示从第{from}条到{to}条 共{total}条记录',
@@ -77,14 +82,13 @@
            });
 	}
 	function doSearch() {
-		var opts = $("#tt").datagrid("options");
+		var opts = $("#dg").datagrid("options");
 	    opts.url = "/user/list";
-	    begin=1;
-	    end=2;
 	    
 		$('#dg').datagrid('load', {			
 			nickname : $('#nickname').val(),
-			name: $('#name').val()
+			name: $('#name').val(),
+			classname: $('#classname').val()
 			
 		});
 	}
@@ -115,8 +119,49 @@
      }
      
      function formatOper(val,row,index){  
-    	    return '<a href="#" onclick="editUser('+index+')">修改</a><a href="#" onclick="delUser('+index+')">删除</a>';  
-    	}  
+    	    return '<a href="#" onclick="editUser('+row.id+')">修改</a>&nbsp;&nbsp; <a href="#" onclick="alert('+ row.id +')">删除</a>';  
+    	}
+     
+   //url：窗口调用地址，title：窗口标题，width：宽度，height：高度，shadow：是否显示背景阴影罩层
+     function showMessageDialog(url, title, width, height, shadow) {
+         var content = '<iframe src="' + url + '" width="100%" height="99%" frameborder="0" scrolling="no" ></iframe>';
+         //var boarddiv = '<div id="msgwindow" title="' + title + '"></div>'//style="overflow:hidden;"可以去掉滚动条
+         //$(document.body).append(boarddiv);
+         msgwindow = $('#msgwindow');
+         msgwindow.title = title;
+         var win = msgwindow.dialog({
+             content: content,
+             width: width,
+             height: height,
+             modal: shadow,
+             title: title,
+             onClose: function () {
+                 //$(this).dialog('destroy');//后面可以关闭后的事件
+             }
+         });
+       /* //点击保存,假定保存成功  
+         $('btnsave').click(function(){  
+             $.messager.alert("提示信息","操作成功!","info");  
+             //这里在后面加true,将会绕过onBeforeClose事件,弹出框直接关闭  
+             $('#msgwindow').dialog("close",true);  
+         });  
+           
+         //点击关闭  
+         $('#btnclose').click(function(){  
+             $('#msgwindow').dialog("close");  
+         });   */
+         
+         win.dialog('open');
+     }
+   
+   function addUser(){
+	   url = "/user/addform";
+	   title = "新增";
+	   width = 700;
+	   height = 400;
+	   shadow = true;
+	   showMessageDialog(url, title, width, height, shadow);
+   }
      
     
 </script>
@@ -129,9 +174,9 @@
 			<thead>
 				<tr>
 					<th field="name" width="50">学生姓名</th>
-					<th field="nickname" width="50">微信昵称</th>
-					<th field="phone" width="50">Phone</th>
-					<th field="email" width="50">Email</th>
+					<th field="classname" width="50">班级名称</th>
+					<th field="nickname" width="50">微信昵称</th>					
+					<th field="wechatno" width="50">微信号</th>
 					<th data-options="field:'_operate',width:80,align:'center',formatter:formatOper">操作</th>  
 				</tr>
 			</thead>
@@ -149,7 +194,7 @@
 			</div>
 			<div style="border-top: 1px solid #95b8e7">
 				<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true"
-					onclick="javascript:$('#dg').edatagrid('addRow')">新增</a>
+					onclick="javascript:addUser();">新增</a>
 					<!-- <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true"
 					onclick="javascript:$('#dg').edatagrid('saveRow')">修改</a> <a href="#"
 					class="easyui-linkbutton" iconCls="icon-remove" plain="true"
@@ -161,6 +206,6 @@
 		
 
 	</div>
-
+<div id="msgwindow"  ></div>
 </body>
 </html>

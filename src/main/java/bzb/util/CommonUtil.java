@@ -98,12 +98,17 @@ public class CommonUtil {
 				}
 				 Method method = clazz.getDeclaredMethod("get"+ toFirstLetterUpperCase(name));
 				 Object value = method.invoke(t);
-				if (!"int".equals(filed.getType().toString())) {
-					sql.append("'").append(value).append("'");
-				}/* else if (value == null) {
-					continue;
-				}*/else {
+				if("boolean".equals(filed.getType().toString())){
+					if ((Boolean)value ) {
+						sql.append(1);
+					}else {
+						sql.append(0);
+					}
+				}else if ("int".equals(filed.getType().toString())) {
+					
 					sql.append(value);
+				}else {
+					sql.append("'").append(value).append("'");
 				}
 			}
 			sql.append(")");
